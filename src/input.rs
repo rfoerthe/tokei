@@ -31,7 +31,6 @@ macro_rules! supported_formats {
         #[cfg_attr(test, derive(strum_macros::EnumIter))]
         #[derive(Debug, Clone)]
         pub enum Format {
-            Json,
             $(
                 #[cfg(feature = $feature)] $variant
             ),+
@@ -41,13 +40,13 @@ macro_rules! supported_formats {
         impl Format {
             pub fn supported() -> &'static [&'static str] {
                 &[
-                    "json",
                     $(
                         #[cfg(feature = $feature)] stringify!($name)
                     ),+
                 ]
             }
 
+            #[allow(dead_code)]
             pub fn all() -> &'static [&'static str] {
                 &[
                     $( stringify!($name) ),+
@@ -100,7 +99,6 @@ macro_rules! supported_formats {
                 };
 
                 match *self {
-                    Format::Json => Ok(serde_json::to_string(&output)?),
                     $(
                         #[cfg(feature = $feature)] Format::$variant => {
                             let print= &{ $print_kode };

@@ -37,7 +37,7 @@
       "name": "APL",
       "line_comment": ["⍝"],
       "extensions": ["apl", "aplf", "apls"],
-      "quotes": [["'", "'"]],
+      "quotes": [["'", "'"]]
     },
     "Arduino": {
       "name": "Arduino C++",
@@ -181,7 +181,7 @@
       "name": "BQN",
       "line_comment": ["#"],
       "extensions": ["bqn"],
-      "quotes": [["\\\"", "\\\""], ["'", "'"]],
+      "quotes": [["\\\"", "\\\""], ["'", "'"]]
     },
     "BrightScript": {
       "quotes": [["\\\"", "\\\""]],
@@ -1644,7 +1644,7 @@
       "name": "Specman e",
       "line_comment": ["--", "//"],
       "multi_line_comments": [["'>", "<'"]],
-      "extensions": ["e"]
+      "extensions": ["spe"]
     },
     "Spice": {
       "name": "Spice Netlist",

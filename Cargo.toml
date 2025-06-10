@@ -23,9 +23,10 @@ rust-version = "1.71"
 edition = "2021"
 
 [features]
-all = ["cbor", "yaml"]
+default = ["json"]
+all = ["json", "cbor", "yaml"]
+json = []  # Leeres Feature, da serde_json immer verfügbar ist
 cbor = ["dep:hex", "dep:serde_cbor"]
-default = []
 yaml = ["dep:serde_yaml"]
 
 [profile.release]
