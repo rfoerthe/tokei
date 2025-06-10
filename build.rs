@@ -83,7 +83,7 @@ fn generate_tests_batch(
     string: &mut String,
 ) -> Result<(), Box<dyn error::Error>> {
     let walker = Walk::new(src_dir).filter(|p| match p {
-        Ok(ref p) => {
+        Ok(p) => {
             if let Ok(ref p) = p.metadata() {
                 p.is_file()
             } else {

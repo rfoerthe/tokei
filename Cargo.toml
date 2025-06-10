@@ -18,9 +18,9 @@ license = "MIT OR Apache-2.0"
 name = "tokei"
 readme = "README.md"
 repository = "https://github.com/XAMPPRocky/tokei.git"
-version = "13.0.0-alpha.8"
-rust-version = "1.71"
-edition = "2021"
+version = "13.0.0-rf"
+rust-version = "1.87.0"
+edition = "2024"
 
 [features]
 default = ["json"]
