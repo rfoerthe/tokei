@@ -150,7 +150,7 @@ mod tests {
         fs::create_dir(path_name).expect("Couldn't create directory.rs within temp");
 
         super::get_all_files(
-            &[tmp_dir.into_path().to_str().unwrap()],
+            &[tmp_dir.keep().to_str().unwrap()],
             &[],
             &mut languages,
             &Config::default(),
