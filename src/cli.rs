@@ -227,8 +227,8 @@ impl Cli {
                     .value_parser(clap::value_parser!(NumberFormatStyle))
                     .conflicts_with("output")
                     .help(
-                        "Format of printed numbers, i.e., plain (1234, default), \
-                        commas (1,234), dots (1.234), or underscores (1_234). Cannot be \
+                        "Format of printed numbers, i.e., dots (1.234, default), \
+                        commas (1,234), plain (1234), or underscores (1_234). Cannot be \
                         used with --output.",
                     ),
             )

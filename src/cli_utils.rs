@@ -80,7 +80,7 @@ pub enum NumberFormatStyle {
 
 impl Default for NumberFormatStyle {
     fn default() -> Self {
-        Self::Plain
+        Self::Dots
     }
 }
 
