@@ -50,6 +50,7 @@ pub struct Cli {
     pub sort: Option<Sort>,
     pub sort_reverse: bool,
     pub types: Option<Vec<LanguageType>>,
+    pub threads: Option<usize>,
     pub compact: bool,
     pub number_format: num_format::CustomFormat,
 }
@@ -193,6 +194,16 @@ impl Cli {
                     .help("Reverse sort languages based on column"),
             )
             .arg(
+                Arg::new("threads")
+                    .long("threads")
+                    .short('p')
+                    .value_parser(value_parser!(usize))
+                    .help(
+                        "Restricts the number of threads to use. Defaults to the number \
+                        of available processor threads",
+                    ),
+            )
+            .arg(
                 Arg::new("types")
                     .long("types")
                     .short('t')
@@ -254,6 +265,7 @@ impl Cli {
             })
             .collect()
         });
+        let threads = matches.get_one::<usize>("threads").cloned();
 
         let num_format_style: NumberFormatStyle = matches
             .get_one::<NumberFormatStyle>("num_format_style")
@@ -310,6 +322,7 @@ impl Cli {
             sort,
             sort_reverse,
             types,
+            threads,
             compact,
             number_format,
         };

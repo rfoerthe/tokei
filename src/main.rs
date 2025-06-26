@@ -6,7 +6,7 @@ mod cli_utils;
 mod consts;
 mod input;
 
-use std::{error::Error, io, process};
+use std::{error::Error, io, process, thread};
 
 use tokei::{Config, Languages, Sort};
 
@@ -21,6 +21,7 @@ use crate::{
 };
 
 fn main() -> Result<(), Box<dyn Error>> {
+
     let mut cli = Cli::from_args();
 
     if cli.print_languages {
@@ -46,6 +47,28 @@ fn main() -> Result<(), Box<dyn Error>> {
         }
     }
 
+    if let Some(threads_limit) = cli.threads {
+        let max_threads = thread::available_parallelism()
+            .unwrap_or_else(|e| {
+                eprintln!("Error determining thread count: {}", e);
+                process::exit(1);
+            })
+            .get();
+
+        if !(1..=max_threads).contains(&threads_limit) {
+            eprintln!("Error: A thread limit of {} requested. Please provide a number between 1 and {}.", 
+                      threads_limit, max_threads);
+            process::exit(1);
+        }
+
+        rayon::ThreadPoolBuilder::new()
+            .num_threads(threads_limit)
+            .build_global()
+            .unwrap();
+        
+        println!("Using {} of {} threads.", threads_limit, max_threads);
+    }
+    
     let columns = cli
         .columns
         .or(config.columns)
