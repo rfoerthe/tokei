@@ -154,7 +154,7 @@ fn filter_range<'dataset, 'cap>(
 
 impl<'a> RegexCache<'a> {
     /// Returns the language family for which regexes were matched, if any
-    pub(crate) fn family(&self) -> Option<&RegexFamily> {
+    pub(crate) fn family(&self) -> Option<&RegexFamily<'a>> {
         self.inner.as_ref()
     }
 
